@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Query, Mutation } from 'react-apollo';
-import { CLIENTES_QUERY } from '../queries/index';
+import { CLIENTES_QUERY } from '../../queries/index';
 import { Link } from 'react-router-dom';
-import { ELIMINAR_CLIENTE } from '../mutations';
-import Paginador from './Paginador';
+import { ELIMINAR_CLIENTE } from '../../mutations';
+import Paginador from '../Paginador';
 
 class Contactos extends Component {
 
@@ -16,11 +16,15 @@ class Contactos extends Component {
     }
 
     paginaAnterior = () =>{
-        console.log('pagina anterior');
+        this.setState({
+            paginador:{
+                offset: this.state.paginador.offset - this.limite,
+                actual:this.state.paginador.actual - 1
+            }
+        })
     }
 
     paginaSiguiente = () =>{
-        console.log('pagina siguiente');
         this.setState({
             paginador:{
                 offset: this.state.paginador.offset + this.limite,
